@@ -11,11 +11,9 @@ import org.activiti.engine.runtime.ProcessInstance;
  */
 public class ActivtiStartInstance {
     public static void main(String[] args) {
-        // 创建processEngine
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
 
         // 得到runtimeService
-        RuntimeService runtimeService = defaultProcessEngine.getRuntimeService();
+        RuntimeService runtimeService = ActivitiUtil.getRuntimeService();
 
         // 启动实例
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("qingjia");

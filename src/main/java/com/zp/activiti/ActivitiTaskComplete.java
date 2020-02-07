@@ -18,11 +18,8 @@ public class ActivitiTaskComplete {
         String assignee = "lisi";
 
 
-        // 创建processEngine
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
-
         // 得到runtimeService
-        TaskService taskService = defaultProcessEngine.getTaskService();
+        TaskService taskService = ActivitiUtil.getTaskService();
 
 
         List<Task> list = taskService.createTaskQuery().processDefinitionKey("qingjia")

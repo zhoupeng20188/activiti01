@@ -13,20 +13,12 @@ import java.io.InputStream;
 
 public class QueryBpmnFile {
     public static void main(String[] args) throws IOException {
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
-
-        RepositoryService repositoryService = defaultProcessEngine.getRepositoryService();
-
-        // 流程定义查询器
-        ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
-
-        ProcessDefinition processDefinition = processDefinitionQuery.processDefinitionKey("qingjia")
-                .orderByProcessDefinitionVersion()
-                .desc()
-                .singleResult();
+        ProcessDefinition processDefinition = ActivitiUtil.getProcessDefinition("qingjia");
 
         // 流程部署id
         String deploymentId = processDefinition.getDeploymentId();
+
+        RepositoryService repositoryService = ActivitiUtil.getRepositoryService();
 
 
         // getResourceAsStream

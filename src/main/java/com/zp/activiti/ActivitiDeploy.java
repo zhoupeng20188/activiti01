@@ -11,12 +11,8 @@ import org.activiti.engine.repository.Deployment;
  */
 public class ActivitiDeploy {
     public static void main(String[] args) {
-
-        // 创建processEngine
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
-
         // 创建repositoryService实例
-        RepositoryService repositoryService = defaultProcessEngine.getRepositoryService();
+        RepositoryService repositoryService = ActivitiUtil.getRepositoryService();
 
         // 进行部署
         Deployment deployment = repositoryService.createDeployment()

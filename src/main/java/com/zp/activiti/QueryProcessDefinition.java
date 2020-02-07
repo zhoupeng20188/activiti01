@@ -13,19 +13,9 @@ import java.util.List;
  */
 public class QueryProcessDefinition {
     public static void main(String[] args) {
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
+        List<ProcessDefinition> list = ActivitiUtil.getProcessDefinitionList("qingjia");
 
-        RepositoryService repositoryService = defaultProcessEngine.getRepositoryService();
-
-        // 流程定义查询器
-        ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
-
-        List<ProcessDefinition> qingjia = processDefinitionQuery.processDefinitionKey("qingjia")
-                .orderByProcessDefinitionVersion()
-                .desc()
-                .list();
-
-        for (ProcessDefinition processDefinition : qingjia) {
+        for (ProcessDefinition processDefinition : list) {
             System.out.println(processDefinition.getId());
             System.out.println(processDefinition.getKey());
             System.out.println(processDefinition.getName());

@@ -14,9 +14,8 @@ import org.activiti.engine.repository.ProcessDefinitionQuery;
  */
 public class DeleteProcessDefinition {
     public static void main(String[] args) {
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
 
-        RepositoryService repositoryService = defaultProcessEngine.getRepositoryService();
+        RepositoryService repositoryService = ActivitiUtil.getRepositoryService();
 
         // 流程定义查询器
         ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();

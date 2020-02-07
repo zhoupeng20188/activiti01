@@ -8,9 +8,8 @@ import org.activiti.engine.runtime.ProcessInstance;
 public class BusinessKeyAdd {
     public static void main(String[] args) {
 
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
 
-        RuntimeService runtimeService = defaultProcessEngine.getRuntimeService();
+        RuntimeService runtimeService = ActivitiUtil.getRuntimeService();
 
         // 第一个参数为流程的key
         // 第二个参数为business key,即业务表的id

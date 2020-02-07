@@ -16,12 +16,8 @@ public class ActivitiTaskQuery {
 
         String assignee = "zhangsan";
 
-
-        // 创建processEngine
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
-
         // 得到runtimeService
-        TaskService taskService = defaultProcessEngine.getTaskService();
+        TaskService taskService = ActivitiUtil.getTaskService();
 
         List<Task> list = taskService.createTaskQuery().processDefinitionKey("qingjia")
                 .taskAssignee(assignee)

@@ -13,9 +13,8 @@ import java.util.List;
  */
 public class HistroyQuery {
     public static void main(String[] args) {
-        ProcessEngine defaultProcessEngine = ProcessEngines.getDefaultProcessEngine();
 
-        HistoryService historyService = defaultProcessEngine.getHistoryService();
+        HistoryService historyService = ActivitiUtil.getHistoryService();
 
         HistoricActivityInstanceQuery historicActivityInstanceQuery = historyService.createHistoricActivityInstanceQuery();
 
