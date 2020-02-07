@@ -19,7 +19,7 @@ public class HistroyQuery {
 
         HistoricActivityInstanceQuery historicActivityInstanceQuery = historyService.createHistoricActivityInstanceQuery();
 
-        List<HistoricActivityInstance> list = historicActivityInstanceQuery.processInstanceId("2501").list();
+        List<HistoricActivityInstance> list = historicActivityInstanceQuery.processInstanceId("12501").list();
 
         for (HistoricActivityInstance historicActivityInstance : list) {
             System.out.println("=======");
