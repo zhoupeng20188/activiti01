@@ -1,6 +1,8 @@
 package com.zp.activiti.variable;
 
 import com.zp.activiti.util.ActivitiUtil;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 
 import java.util.HashMap;
 
@@ -21,5 +23,18 @@ public class VariableTest2 {
         ActivitiUtil.taskComplete(key, "m2");
         ActivitiUtil.taskComplete(key, "r1");
 
+
+        // 通过runtimeService的setVariable和setVariables也可以设置变量,第一个参数为流程实例id
+//        通过setVariableLocal也可以设置局部变量
+        RuntimeService runtimeService = ActivitiUtil.getRuntimeService();
+//        runtimeService.setVariable();
+//        runtimeService.setVariables();
+
+
+        // 通过taskService的setVariable和setVariables也可以设置变量,第一个参数为任务id
+//        通过setVariableLocal也可以设置局部变量,局部变量只在当前节点有效
+        TaskService taskService = ActivitiUtil.getTaskService();
+//        taskService.setVariable();
+//        taskService.setVariables();
     }
 }
