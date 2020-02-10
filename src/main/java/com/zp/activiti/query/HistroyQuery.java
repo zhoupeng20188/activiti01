@@ -1,8 +1,7 @@
-package com.zp.activiti;
+package com.zp.activiti.query;
 
+import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.HistoryService;
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricActivityInstanceQuery;
 

@@ -1,5 +1,6 @@
-package com.zp.activiti;
+package com.zp.activiti.definition;
 
+import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
 

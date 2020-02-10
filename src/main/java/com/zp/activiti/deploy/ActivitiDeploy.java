@@ -1,7 +1,6 @@
-package com.zp.activiti;
+package com.zp.activiti.deploy;
 
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
+import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 
@@ -17,7 +16,7 @@ public class ActivitiDeploy {
         // 进行部署
         Deployment deployment = repositoryService.createDeployment()
                 // 文件夹的名称不能是process
-                .addClasspathResource("processes/qingjia.bpmn")
+                .addClasspathResource("processes/qingjia3.bpmn")
 //                .addClasspathResource("processes/qingjia.png")
 //                .addClasspathResource("qingjia.bpmn")
 //                .addClasspathResource("qingjia.png")

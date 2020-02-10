@@ -1,5 +1,6 @@
-package com.zp.activiti;
+package com.zp.activiti.assingnee;
 
+import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.RuntimeService;
 
 import java.util.HashMap;

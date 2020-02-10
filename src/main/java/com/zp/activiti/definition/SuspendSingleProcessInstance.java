@@ -1,5 +1,6 @@
-package com.zp.activiti;
+package com.zp.activiti.definition;
 
+import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;

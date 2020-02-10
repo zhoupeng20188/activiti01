@@ -1,5 +1,6 @@
-package com.zp.activiti;
+package com.zp.activiti.query;
 
+import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.repository.ProcessDefinition;
 
 import java.util.List;
