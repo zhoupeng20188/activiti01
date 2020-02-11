@@ -37,13 +37,23 @@ public class GroupText {
 			// 此时输出为null，说明c2只是候选人，不是任务的执行人
 			System.out.println(task.getAssignee());
 			
+			String taskId = task.getId();
+			
 			// c2拾取任务，拾取任务完成后即变成了任务执行者
-			taskService.claim(task.getId(),candidateUser);
+			taskService.claim(taskId,candidateUser);	
 			System.out.println(candidateUser + "拾取任务成功");
 			
 			// c2完成任务
-			ActivitiUtil.taskComplete(key, candidateUser);
+//			ActivitiUtil.taskComplete(key, candidateUser);
 			
+			// c2放弃任务，归还任务
+//			taskService.setAssignee(taskId, null);
+			
+			// c2将任务指定给c3
+			taskService.setAssignee(taskId, "c3");
+			
+			// c3完成任务
+			ActivitiUtil.taskComplete(key, "c3");
 			
 			
 		}
