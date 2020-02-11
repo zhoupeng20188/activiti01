@@ -9,3 +9,4 @@
 * qingjia4.bpmn 设定了候选人组Candidate users
 * qingjia5.bpmn 设定了排它网关
 * qingjia6.bpmn 设定了排它网关和并行网关
+* tijian.bpmn 设定了包含网关

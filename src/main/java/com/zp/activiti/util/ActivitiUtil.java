@@ -77,7 +77,7 @@ public class ActivitiUtil {
      * 流程部署
      * @param bpmnName
      */
-    public static void deploy(String bpmnName){
+    public static void deploy(String bpmnName, String processName){
 
         RepositoryService repositoryService = getRepositoryService();
 
@@ -85,7 +85,7 @@ public class ActivitiUtil {
         Deployment deployment = repositoryService.createDeployment()
                 // 文件夹的名称不能是process
                 .addClasspathResource("processes/" + bpmnName + ".bpmn")
-                .name("请假流程")
+                .name(processName)
                 .deploy();
 
         System.out.println(deployment.getId());

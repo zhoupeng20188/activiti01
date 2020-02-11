@@ -11,7 +11,7 @@ public class DeployNotSetVar {
 
         String key = "qingjia3";
 
-        ActivitiUtil.deploy(key);
+        ActivitiUtil.deploy(key, "请假流程");
 
         runtimeService.startProcessInstanceByKey(key);
 

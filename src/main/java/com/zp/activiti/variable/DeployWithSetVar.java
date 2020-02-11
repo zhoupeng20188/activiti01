@@ -12,7 +12,7 @@ public class DeployWithSetVar {
 
         String key = "qingjia3";
 
-        ActivitiUtil.deploy(key);
+        ActivitiUtil.deploy(key, "请假流程");
 
         HashMap<String, Object> map = new HashMap<>();
         Holiday holiday = new Holiday();
