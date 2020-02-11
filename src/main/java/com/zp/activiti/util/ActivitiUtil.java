@@ -111,7 +111,7 @@ public class ActivitiUtil {
             System.out.println("任务名为" + task.getName());
             System.out.println("任务指派人为" + task.getAssignee());
             System.out.println("任务所在的流程实例id为" + task.getProcessInstanceId());
-
+            System.out.println("任务完成");
             // 处理任务 参数为任务id
             taskService.complete(taskId);
         }

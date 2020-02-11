@@ -6,7 +6,7 @@ import org.activiti.engine.RuntimeService;
 
 import java.util.HashMap;
 
-public class DeployWithSetVar {
+public class DeployExclusiveGateway {
     public static void main(String[] args) {
         RuntimeService runtimeService = ActivitiUtil.getRuntimeService();
 
