@@ -1,4 +1,4 @@
-package com.zp.activiti.variable;
+package com.zp.activiti.bean;
 
 import lombok.Data;
 

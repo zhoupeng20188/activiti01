@@ -1,5 +1,6 @@
 package com.zp.activiti.group;
 
+import com.zp.activiti.bean.Holiday;
 import com.zp.activiti.util.ActivitiUtil;
 import org.activiti.engine.RuntimeService;
 
