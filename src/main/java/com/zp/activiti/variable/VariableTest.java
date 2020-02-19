@@ -13,6 +13,7 @@ public class VariableTest {
         ActivitiUtil.taskComplete(key, "t1");
         ActivitiUtil.taskComplete(key, "m1");
         ActivitiUtil.taskComplete(key, "m2");
+        ActivitiUtil.taskComplete(key, "r1");
 
     }
 }
