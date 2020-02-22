@@ -1,11 +1,18 @@
 package com.zp.activiti.util;
 
 import org.activiti.engine.*;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.pvm.PvmActivity;
+import org.activiti.engine.impl.pvm.PvmTransition;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.impl.pvm.process.ProcessDefinitionImpl;
+import org.activiti.engine.impl.pvm.process.TransitionImpl;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.task.Task;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -156,5 +163,67 @@ public class ActivitiUtil {
             System.out.println("任务指派人为" + task.getAssignee());
             System.out.println("任务所在的流程实例id为" + task.getProcessInstanceId());
         }
+    }
+
+    public void rejectFlow(Task curTask) {
+        RepositoryService repositoryService = getRepositoryService();
+        String processDefinitionId = curTask.getProcessDefinitionId();
+        ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService.createProcessDefinitionQuery()
+                .processDefinitionId(processDefinitionId)
+                .singleResult();
+
+        //获取当前activity
+        ActivityImpl curActivity = processDefinitionEntity
+                .findActivity(curTask.getTaskDefinitionKey());
+
+        // 取得上一步活动的节点流向
+        List<PvmTransition> incomingTransitions = curActivity.getIncomingTransitions();
+
+        //清空指定节点所有流向并暂时先将所有流向变量暂时存储在一个新的集合（主要是为后来恢复正常流程走向做准备）
+        List<PvmTransition> pvmTransitionList = new ArrayList<>();
+
+        List<PvmTransition> outgoingTransitions = curActivity.getOutgoingTransitions();
+
+        for (PvmTransition pvmTransition: outgoingTransitions) {
+            pvmTransitionList.add(pvmTransition);
+        }
+        outgoingTransitions.clear();
+
+        //创建新的流向并且设置新的流向的目标节点
+        // （将该节点的流程走向都设置为上一节点的流程走向，目的是相当于形成一个回路）
+        List<TransitionImpl> newTransitionList = new ArrayList<>();
+
+        for (PvmTransition pvmTransition : incomingTransitions) {
+            PvmActivity source = pvmTransition.getSource();
+            ActivityImpl inActivity = processDefinitionEntity.findActivity(source.getId());
+            TransitionImpl newOutgoingTransition = curActivity.createOutgoingTransition();
+            newOutgoingTransition.setDestination(inActivity);
+            newTransitionList.add(newOutgoingTransition);
+
+        }
+
+        // 完成任务
+
+        TaskService taskService = getTaskService();
+
+        HistoryService historyService = getHistoryService();
+
+        List<Task> taskList = taskService.createTaskQuery().processInstanceId(curTask.getProcessInstanceId()).list();
+        for (Task task : taskList) {
+            taskService.complete(task.getId());
+            historyService.deleteHistoricTaskInstance(task.getId());
+        }
+
+
+        // 恢复方向（实现驳回功能后恢复原来正常的方向）
+        for (TransitionImpl transitionImpl : newTransitionList) {
+            curActivity.getOutgoingTransitions().remove(transitionImpl);
+        }
+
+
+        for (PvmTransition pvmTransition : pvmTransitionList) {
+            outgoingTransitions.add(pvmTransition);
+        }
+
     }
 }
